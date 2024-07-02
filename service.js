@@ -78,7 +78,6 @@ MDS.init(function(msg){
 			
 			// //Check non null..
 			if(	msg_title 		=="" ||
-				msg_category 	=="" ||
 				msg_message 	=="" ||
 				msg_user 		=="" ||
 				msg_randid 		=="" ||
@@ -102,7 +101,7 @@ MDS.init(function(msg){
 								msg_user, msg_pubkey, msg_address, msg_randid, msg_sign, function(valid){
 									
 						if(!valid){
-							MDS.log("Invalid signature for "+msg_user);
+							MDS.log("Invalid signature for "+msg_user + " HENCE can't add the message");
 						}else{
 							
 							//Is ir from the user
@@ -121,6 +120,9 @@ MDS.init(function(msg){
 							});					
 						}
 					});	
+				} else {
+					MDS.log("user us blocked...");
+
 				}
 			});
 		}

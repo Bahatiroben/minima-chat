@@ -280,6 +280,8 @@
           if (msg.READ == "0") {
             text =
               "<div class='animate-pulse temporary-pulse'><p class='rounded-full bg-blue-500 text-white w-max px-2 py-[4px] text-[12px] font-bold'>New</p></div>";
+          } else {
+            "<div class='animate-pulse temporary-pulse'><p class='rounded-full bg-yellow-500 text-white w-max px-2 py-[4px] text-[12px] font-bold'>Mine</p></div>";
           }
           text +=
             "<h6 class='text-black font-bold truncate'>" +
@@ -336,9 +338,9 @@
               alert("Error sending txn..\n\n" + sendresp.error);
               return;
             } 
-            // we are having issues verifying the transaction, so we push it to the db for now for demo purposes.
-            // else {
+            else {
               //All good add to your DB..
+              console.log('>>>>>>> sending ')
               insertMessage(
                 "MINIMA WEBSPACE",
                 USER_NAME,
@@ -352,7 +354,7 @@
                 }
               );
               writeRecent();
-            // }
+            }
           }
         );
       }
@@ -390,6 +392,9 @@
             if (msg.READ == "0") {
               text =
                 "<div class='animate-pulse temporary-pulse'><p class='rounded-full bg-blue-500 text-white w-max px-2 mt-4 py-[4px] text-[12px] font-bold'>New</p></div>";
+            } else {
+              "<div class='animate-pulse temporary-pulse'><p class='rounded-full bg-yellow-500 text-white w-max px-2 py-[4px] text-[12px] font-bold'>Mine</p></div>";
+
             }
             text +=
               "<h6 class='text-black font-bold truncate mt-4'>" +
@@ -464,12 +469,7 @@
             
           }
         } else if (msg.event == "NOTIFYCOIN") {
-          //Is it the one that matters
-          if (msg.data.address == SHOUTOUT_ADDRESS) {
-            var msg_category = stripBrackets(msg.data.coin.state[0]);
-
-            //It's a message..
-          }
+          writeRecent();
         }
       });
     </script>
